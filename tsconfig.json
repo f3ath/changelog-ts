@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDirs": ["./src"],
+    "strict": true,
+    "target": "es2017",
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["es2017"]
+  },
+  "include": ["./src/**/*"]
+}
