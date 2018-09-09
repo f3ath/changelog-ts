@@ -1,2 +1,5 @@
 # changelog-ts
-Changelog parser/printer in Typescript
+Changelog document model, parser and printer in Typescript
+
+## Install
+`npm install changelog-ts --save`
