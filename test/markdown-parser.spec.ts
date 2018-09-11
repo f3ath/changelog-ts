@@ -1,9 +1,7 @@
 import * as fs from 'fs';
 import { MarkdownParser } from '../src';
 
-const getSample = function (name: string) {
-  return fs.readFileSync(`./test/md/${name}`).toString();
-};
+const getSample = (name: string) => fs.readFileSync(`./test/md/${name}`).toString();
 
 describe('Markdown parser', () => {
   const parser = new MarkdownParser();
