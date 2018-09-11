@@ -4,7 +4,7 @@
   "author": "Alexey Karpetov",
   "repository": "https://github.com/f3ath/changelog-ts",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index",
   "typings": "dist/index",
   "dependencies": {
@@ -19,6 +19,10 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "test": "jasmine-ts test/**/*.spec.ts"
-  }
+    "test": "jasmine-ts test/**/*.spec.ts",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "dist"
+  ]
 }
