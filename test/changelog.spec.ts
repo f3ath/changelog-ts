@@ -23,6 +23,20 @@ describe('Changelog', () => {
   it('can add a release', () => {
     ch.addRelease(new Release('0.1.1', new Date('1981-02-24')));
   });
+  it('can not add existing version', () => {
+    const release = new Release('0.1.1', new Date('1981-02-24'));
+    ch.addRelease(release);
+    expect(() => ch.addRelease(release)).toThrowError('Release 0.1.1 already exists')
+  });
+  it('sorts releases by date', () => {
+    ch.addRelease(new Release('1.0.0', new Date('2001-01-01')));
+    ch.addRelease(new Release('3.0.0', new Date('2003-01-01')));
+    ch.addRelease(new Release('2.0.0', new Date('2002-01-01')));
+
+    expect(ch.releases[0].version).toBe('3.0.0');
+    expect(ch.releases[1].version).toBe('2.0.0');
+    expect(ch.releases[2].version).toBe('1.0.0');
+  })
 });
 
 describe('Default Changelog', () => {
