@@ -4,7 +4,7 @@
   "author": "Alexey Karpetov",
   "repository": "https://github.com/f3ath/changelog-ts",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index",
   "typings": "dist/index",
   "dependencies": {
