@@ -23,7 +23,7 @@ export class MarkdownPrinter {
       }
       this._printChanges(changelog.unreleased, lines);
     }
-    for (let r of changelog.releases) {
+    changelog.releases.forEach(r => {
       const date = this._formatDate(r.date);
       if (r.diffUrl) {
         lines.push(`## [${r.version}] - ${date}`);
@@ -32,7 +32,7 @@ export class MarkdownPrinter {
         lines.push(`## ${r.version} - ${date}`);
       }
       this._printChanges(r, lines);
-    }
+    });
     links.forEach((url, name) => lines.push(`[${name}]: ${url}`));
     return lines;
   }
