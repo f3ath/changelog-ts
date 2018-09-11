@@ -21,7 +21,13 @@ export class Changelog {
    * Releases
    */
   get releases(): Release[] {
-    return [...this._map.values()];
+    const releases = [...this._map.values()];
+    releases.sort((a, b) => {
+      if (a.date > b.date) return -1;
+      if (a.date < b.date) return 1;
+      return 0;
+    });
+    return releases;
   }
 
   private _map = new Map<string, Release>();
@@ -45,7 +51,9 @@ export class Changelog {
    * @param release
    */
   addRelease(release: Release): void {
-    this._map.set(release.version, release);
+    const key = release.version;
+    if (this._map.has(key)) throw new Error(`Release ${key} already exists`);
+    this._map.set(key, release);
   }
 }
 
