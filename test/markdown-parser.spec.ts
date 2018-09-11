@@ -1,6 +1,8 @@
 import * as fs from 'fs';
 import { MarkdownParser } from '../src';
 
+const getSample = (name: string) => fs.readFileSync(`./test/md/${name}`).toString();
+
 describe('Markdown parser', () => {
   const parser = new MarkdownParser();
 
@@ -50,8 +52,9 @@ describe('Markdown parser', () => {
     expect(c.banner).toEqual(['This is the banner']);
     expect(c.unreleased.changes('Added')).toEqual(['A new feature']);
   });
+
   it('can parse sample', () => {
-    const c = parser.parse(fs.readFileSync('./test/md/keepachangelog.md').toString());
+    const c = parser.parse(getSample('keepachangelog.md'));
     expect(c.title).toEqual('Changelog');
     expect(c.banner[0].startsWith('All notable changes')).toBe(true);
     expect(c.banner[1]).toContain('Semantic Versioning');

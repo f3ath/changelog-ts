@@ -1,3 +1,5 @@
+const semver = require('semver');
+
 /**
  * Changelog document model
  */
@@ -18,13 +20,15 @@ export class Changelog {
   readonly unreleased: ChangeSet = new ChangeSet();
 
   /**
-   * Releases
+   * Releases sorted by date and version (if comparable according to semver)
    */
   get releases(): Release[] {
     const releases = [...this._map.values()];
     releases.sort((a, b) => {
-      if (a.date > b.date) return -1;
       if (a.date < b.date) return 1;
+      if (a.date > b.date) return -1;
+      if (semver.lt(a.version, b.version)) return 1;
+      if (semver.gt(a.version, b.version)) return -1;
       return 0;
     });
     return releases;
@@ -74,7 +78,7 @@ export class ChangeSet {
   }
 
   /**
-   * Array of all change types
+   * Array of all change types in no particular order
    */
   get types(): string[] {
     return [...this._map.keys()];
@@ -93,7 +97,7 @@ export class ChangeSet {
   }
 
   /**
-   * Array of all changes of the given type
+   * Array of all changes of the given type in no particular order
    * @param type
    */
   changes(type: string): string[] {
