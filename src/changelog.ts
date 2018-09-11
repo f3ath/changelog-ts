@@ -23,12 +23,8 @@ export class Changelog {
   get releases(): Release[] {
     const releases = [...this._map.values()];
     releases.sort((a, b) => {
-      if (a.date > b.date) {
-        return -1;
-      }
-      if (a.date < b.date) {
-        return 1;
-      }
+      if (a.date > b.date) return -1;
+      if (a.date < b.date) return 1;
       return 0;
     });
     return releases;
