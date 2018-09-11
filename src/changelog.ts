@@ -52,9 +52,7 @@ export class Changelog {
    */
   addRelease(release: Release): void {
     const key = release.version;
-    if (this._map.has(key)) {
-      throw new Error(`Release ${key} already exists`);
-    }
+    if (this._map.has(key)) throw new Error(`Release ${key} already exists`);
     this._map.set(key, release);
   }
 }
