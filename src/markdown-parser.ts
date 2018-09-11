@@ -84,7 +84,8 @@ class TypeState implements State {
   }
 
   after(t: Token): State {
-    return new ChangeState(this.changeset, this.type!);
+    if (this.type !== undefined) return new ChangeState(this.changeset, this.type);
+    return new InvalidState(this);
   }
 
   process(t: Token): void {
@@ -96,7 +97,8 @@ class ReleaseState implements State {
   private changeset?: ChangeSet;
 
   after(t: Token): State {
-    return new TypeState(this.changeset!);
+    if (this.changeset) return new TypeState(this.changeset);
+    return new InvalidState(this);
   }
 
   process(t: Token, c: Changelog, links: Links): void {
@@ -122,7 +124,7 @@ class ReleaseState implements State {
   }
 
   private isBracketed(version: string): boolean {
-    return version.startsWith('[');
+    return version.startsWith('[') && version.endsWith(']');
   }
 
   private stripBrackets(version: string): string {
