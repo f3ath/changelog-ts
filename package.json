@@ -19,6 +19,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "test": "jasmine-ts test/**/*.spec.ts"
-  }
+    "test": "jasmine-ts test/**/*.spec.ts",
+    "prepublish": "npm run build"
+  },
+  "files": ["dist"]
 }
